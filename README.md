@@ -35,54 +35,43 @@
 | 3   | 23520376 | Nguyễn Khánh Duy     | https://github.com/GhetCodeSo1 | 23520376@gm.uit.edu.vn |
 | 4   | 23521532 | Bùi Phan Thị Anh Thư | https://github.com/anhthu1102  | 23521532@gm.uit.edu.vn |
 
-🗄️ Cơ sở dữ liệu (Database)
-Dưới đây là danh sách các bảng chính được sử dụng trong hệ thống Sportiverse:
+🗄️ Database Schema
+Hệ thống Sportiverse sử dụng các bảng dữ liệu chính sau, chia theo nhóm chức năng:
 
-1. users – Người dùng
-   Thông tin: tên, email, mật khẩu, vai trò, địa chỉ, số điện thoại, avatar...
+👤 Người dùng & Xác thực
+Bảng Mô tả
+users Thông tin người dùng: tên, email, mật khẩu, vai trò, địa chỉ, ảnh đại diện, v.v.
+social_accounts Lưu thông tin đăng nhập bằng Google, Facebook, v.v.
 
-Có xác thực email và hỗ trợ soft delete.
+🏷️ Môn thể thao & Danh mục
+Bảng Mô tả
+sports Danh sách môn thể thao: bóng đá, bóng rổ,...
+categories Danh mục sản phẩm theo môn thể thao. Hỗ trợ phân cấp danh mục cha/con.
 
-2. social_accounts – Tài khoản mạng xã hội
-   Kết nối tài khoản Google, Facebook,... với user.
+🛒 Sản phẩm & Hình ảnh
+Bảng Mô tả
+products Thông tin sản phẩm: tên, mô tả, giá, tồn kho, nổi bật,...
+product_images Nhiều hình ảnh cho mỗi sản phẩm, có thể đánh dấu ảnh chính.
 
-3. sports – Môn thể thao
-   Dùng để phân loại các môn như bóng đá, bóng rổ, bơi lội,...
+❤️ Danh sách yêu thích & Đánh giá
+Bảng Mô tả
+wishlists Sản phẩm yêu thích của người dùng
+reviews Người dùng đánh giá và bình luận sản phẩm
 
-Có slug và icon để hỗ trợ SEO và giao diện.
+🛍️ Giỏ hàng & Đặt hàng
+Bảng Mô tả
+carts Giỏ hàng của người dùng (có thể là khách)
+cart_items Sản phẩm trong giỏ hàng với số lượng cụ thể
+orders Đơn hàng gồm địa chỉ, trạng thái, thanh toán, giảm giá,...
+order_items Chi tiết sản phẩm trong mỗi đơn hàng
 
-4. categories – Danh mục sản phẩm
-   Phân loại sản phẩm theo môn thể thao.
+💸 Mã giảm giá
+Bảng Mô tả
+coupons Mã khuyến mãi theo phần trăm hoặc số tiền cố định. Có giới hạn, điều kiện áp dụng, thời gian hiệu lực.
 
-Hỗ trợ danh mục cha/con (cấu trúc phân cấp).
+🧱 Công nghệ hỗ trợ
+Hỗ trợ soft delete trên nhiều bảng (users, products, orders)
 
-5. products – Sản phẩm
-   Thông tin như tên, mô tả, giá, tồn kho, nổi bật,...
+Sử dụng slug cho SEO (sports, categories, products)
 
-Có soft delete, hỗ trợ slug cho SEO.
-
-6. product_images – Hình ảnh sản phẩm
-   Cho phép một sản phẩm có nhiều hình ảnh.
-
-Có thể đánh dấu hình ảnh chính.
-
-7. carts & cart_items – Giỏ hàng và sản phẩm trong giỏ
-   Giỏ hàng có thể thuộc về user hoặc guest.
-
-Mỗi sản phẩm có số lượng đi kèm.
-
-8. orders & order_items – Đơn hàng và chi tiết đơn hàng
-   Gồm trạng thái đơn hàng, thông tin giao hàng, thanh toán,...
-
-Lưu lịch sử giá từng sản phẩm khi đặt hàng.
-
-9. coupons – Mã giảm giá
-   Hỗ trợ theo phần trăm hoặc số tiền cố định.
-
-Có điều kiện áp dụng, thời gian hiệu lực và giới hạn số lần sử dụng.
-
-10. reviews – Đánh giá sản phẩm
-    Người dùng có thể đánh giá và để lại nhận xét.
-
-11. wishlists – Danh sách yêu thích
-    Người dùng có thể lưu sản phẩm vào danh sách yêu thích để xem lại sau.
+Thiết kế chuẩn quan hệ khóa ngoại, đảm bảo dữ liệu chặt chẽ
